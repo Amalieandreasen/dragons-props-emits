@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import {ref} from "vue";
+
+const dragonData = ref(dragons);
+
+import dragons from "./assets/js/dragons"
+import Dragon from "./components/Dragon.vue"
+</script>
 
 <template>
   <!--  -->
@@ -62,11 +69,11 @@
     <h1>D&D website</h1>
     <h2>
       Your source for DnD dragons. Providing dragon information since 2021.<br />
-      Find info about <span>8</span> dragons here.
+      Find info about <span>{{ dragonData.length }}</span> dragons here.
     </h2>
   </header>
   <main>
-    <!-- Indsæt drager her... -->
+    <Dragon v-for="dragon in dragonData" :key="dragon.id" :dragon="dragon"  v-model="dragon.name"/>
   </main>
 </template>
 
